@@ -1,8 +1,7 @@
 const cacheName = 'v1.0::static';
 
 self.addEventListener('install', event => {
-  // once the SW is installed, go ahead and fetch the resources
-  // to make this work offline
+  // Once SW is installed, fetch the resources to make this work offline
   event.waitUntil(
     caches.open(cacheName).then(cache => {
       return cache.addAll([
@@ -18,28 +17,22 @@ self.addEventListener('install', event => {
   );
 });
 
-// when the browser fetches a url, respond with cached
-// object if available, or get from network
+// When the browser fetches a URL, respond from the cache, or get from network
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(res => res || fetch(event.request))
       .catch(() => {
-        // replace requests for jpgs (screenshots) with a cached offline fallback
+        // Replace jpg requests (screenshots) with a cached offline fallback
         if (event.request.url.endsWith('.jpg')){
-          return caches.match('images/offline.png'); //this is that image! :)
+          return caches.match('images/offline.png'); // This is that image! :)
         }
       })
   );
 });
 
-// self.addEventListener('activate', function(event) {
-//   // Calling claim() to force a "controllerchange" event on navigator.serviceWorker
-//   event.waitUntil(self.clients.claim());
-// });
-
-self.addEventListener("activate", event => {
-  // Replace old cached version with updated one
+self.addEventListener('activate', event => {
+  // Replace old cached objects with updated ones
   function clearOldCaches(){
     return caches.keys()
       .then( keys => {
@@ -48,40 +41,10 @@ self.addEventListener("activate", event => {
           .map(key => caches.delete(key))
         );
       });
-      // .then(function (keys) {
-      //   return Promise.all(
-      //     keys.filter(function (key) {
-      //       return !key.startsWith(cacheName);
-      //     })
-      //     .map(function (key) {
-      //       return caches.delete(key);
-      //     })
-      //   );
-      // });
   }
 
-  // Calling claim() to force a "controllerchange" event on navigator.serviceWorker
+  // Activate Service Worker
   event.waitUntil(clearOldCaches()
     .then( () => self.clients.claim() )
   );
-
-  // console.log('WORKER: activate event in progress.');
-  // event.waitUntil(
-  //   caches
-  //     .keys()
-  //     .then(function (keys) {
-  //       return Promise.all(
-  //         keys
-  //           .filter(function (key) {
-  //             return !key.startsWith(cacheName);
-  //           })
-  //           .map(function (key) {
-  //             return caches.delete(key);
-  //           })
-  //       );
-  //     })
-  //     .then(function() {
-  //       console.log('WORKER: activate completed.');
-  //     })
-  // );
 });
