@@ -8,8 +8,8 @@ self.addEventListener('install', event => {
         '/',
         'index.html',
         'manifest.json',
+        'icon.png',
         'css/styles.min.css',
-        'images/icon.png',
         'images/offline.png',
         'js/app.min.js'
       ]).then(() => self.skipWaiting());
