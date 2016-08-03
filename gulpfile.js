@@ -26,7 +26,7 @@ gulp.task('styles', function () {
 	return gulp.src('app/sass/main.scss') 			// use main.scss file, @import partials in Sass rather than compile/concat in Gulp
   	.pipe(sass({ outputStyle: 'expanded' })) 	// compile Sass
     .pipe(autoprefixer()) 										// add prefixes where needed. default: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']
-    //.pipe(gulp.dest('app/css')) 							// save a unminified copy to app/css folder. no reason for this, I just like having it there.
+    //.pipe(gulp.dest('app/css')) 						// save a unminified copy to app/css folder. no reason for this, I just like having it there.
     .pipe(cleanCSS()) 												// minify compiled, prefixed css
     .pipe(rename('styles.min.css')) 					// rename output
 		.pipe(gulp.dest('dist/css')) 							// save into dist/css folder
