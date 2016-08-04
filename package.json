@@ -1,7 +1,7 @@
 {
   "name": "chickenroyal-2016",
   "version": "1.0.0",
-  "description": "Fill this in later",
+  "description": "My website",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
