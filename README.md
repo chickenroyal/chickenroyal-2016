@@ -16,6 +16,6 @@ I built the site using the following tools:
 This was my first time using Service Workers. The following websites were invaluable in getting to grips with them:
 
 * [The offline cookbook](https://jakearchibald.com/2014/offline-cookbook/) - Jake Archibald
-* [Service Worker cookbook](https://serviceworke.rs/) - Mozilla
+* [Service Worker Cookbook](https://serviceworke.rs/) - Mozilla
 * [Making a Service Worker](https://www.smashingmagazine.com/2016/02/making-a-service-worker/) - Lyza Gardner
 * [Service Worker](https://ponyfoo.com/articles/serviceworker-revolution) - Nicolás Bevacqua
